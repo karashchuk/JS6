@@ -12,14 +12,17 @@
                 'credit_card': $('#credit_card').val(),
                 'bio': $('#bio').val(),
             },
-              function(data,res){
-                //res = data;
-                    if(data.result="false"){
-                        $('#response').html('Неправильные данные');
+              function(data,myresult){
+                //res = $.parseJSON(data);
+                
+                    if(data.result){
+                        $('#response').html('Принято!');
+                        
                     }
                     else{
-                        $('#response').html('Принято');     
+                        $('#response').html('Неправильные данные:');
                     }
+                
                 var myError = '<br>';
                 if (data.error){
                     if (data.error.Username) {
@@ -37,10 +40,21 @@
                     if (data.error.Bio) myError += data.error.Bio+'<br>';
                 }
                 
-                $('#response').html($('#response').html() +': <br>'+myError);
+                $('#response').html($('#response').html() +'<br>'+myError);
+                var mm = data.error;
+               
+                
+                console.log(data);
                 console.log(data.error);
-                //console.log(data.error.val());
-                console.log(data.error.index);
+                //console.log(res[error]);
+                console.log(data.result);
+                //console.log(res.result.val());
+                
+                //console.log(mm.[0]);
+                //console.log(mm[2]);
+                
+                console.log(data);
+                console.log(data.error);
                 //console.log(data.error.index());
                 
                 console.log(data.result);
