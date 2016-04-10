@@ -36,7 +36,8 @@
                     }
                     if (data.error.Email) myError += data.error.Email+'<br>';
                     if (data.error.Gender) myError += data.error.Gender+'<br>';
-                    if (data.error.Credit_card) myError += data.error.Credit_card+'<br>';
+                    var ccard = data.error['Credit Card'];
+                    if (ccard) myError += data.error['Credit Card']+'<br>';
                     if (data.error.Bio) myError += data.error.Bio+'<br>';
                 }
                 
@@ -45,7 +46,8 @@
                
                 
                 console.log(data);
-                console.log(data.error);
+                console.log(data.error['Username']);
+                console.log(data.error['Credit Card']);
                 //console.log(res[error]);
                 console.log(data.result);
                 //console.log(res.result.val());
