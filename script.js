@@ -36,7 +36,13 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                 }
                 
                 $('#response').html($('#response').html() +'<br>'+myError);
-                
+                var arr = [];
+                $.each(data.error, function(key,value){
+                    arr.push(key);
+                    console.log( key+' : '+value); 
+                });
+                console.log(arr);
+
             },"json");
             
         });
