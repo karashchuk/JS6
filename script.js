@@ -5,16 +5,9 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
         $(document).on('click', '#send', function(event) {
 
             $('input.active').removeClass('active');
-            
             $.post('validator.php',
-           {
-                'username': $('#Username').val(),
-                'password': $('#Password').val(),
-                'email': $('#Email').val(),
-                'gender': $('#Gender').val(),
-                'credit_card': document.getElementById("Credit Card").value,
-                'bio': $('#Bio').val(),
-            },
+                $("form").serialize(),
+                   
               function(data,myresult){
                 
                 if(data.result){
@@ -29,8 +22,9 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                     for(var i = 0 ; i < 6 ; i++ ){
                         if (data.error[serverData[i]]) {
                             myError += data.error[serverData[i]] +'<br>';
-                            document.getElementById(serverData[i]).classList.add('active');
+                            $("#"+serverData[i].toLowerCase().replace(' ','_')).addClass('active');
                         }
+                        //console.log(data.error[serverData[i]]);
                     }
                 }
                 
