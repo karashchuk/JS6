@@ -1,4 +1,3 @@
-//var myData=['#username','#password','#email','#gender','#credit_card','#bio'];
 var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
 
 (function($) {
@@ -13,7 +12,7 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                 'password': $('#Password').val(),
                 'email': $('#Email').val(),
                 'gender': $('#Gender').val(),
-                'credit_card': $('#CreditCard').val(),
+                'credit_card': document.getElementById("Credit Card").value,
                 'bio': $('#Bio').val(),
             },
               function(data,myresult){
@@ -30,22 +29,12 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                     for(var i = 0 ; i < 6 ; i++ ){
                         if (data.error[serverData[i]]) {
                             myError += data.error[serverData[i]] +'<br>';
-                            if (serverData[i] == 'Credit Card') {
-                                $("#CreditCard").addClass('active');   
-                            }
-                            else $("#"+serverData[i]).addClass('active');
-                            //console.log($("#"+serverData[i]));
+                            document.getElementById(serverData[i]).classList.add('active');
                         }
                     }
                 }
                 
                 $('#response').html($('#response').html() +'<br>'+myError);
-                /*var arr = [];
-                $.each(data.error, function(key,value){
-                    arr.push(key);
-                    console.log( key+' : '+value); 
-                });
-                console.log(arr);*/
 
             },"json");
             
