@@ -1,4 +1,4 @@
-var myData=['#username','#password','#email','#gender','#credit_card','#bio'];
+//var myData=['#username','#password','#email','#gender','#credit_card','#bio'];
 var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
 
 (function($) {
@@ -9,12 +9,12 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
             
             $.post('validator.php',
            {
-                'username': $('#username').val(),
-                'password': $('#password').val(),
-                'email': $('#email').val(),
-                'gender': $('#gender').val(),
-                'credit_card': $('#credit_card').val(),
-                'bio': $('#bio').val(),
+                'username': $('#Username').val(),
+                'password': $('#Password').val(),
+                'email': $('#Email').val(),
+                'gender': $('#Gender').val(),
+                'credit_card': $('#CreditCard').val(),
+                'bio': $('#Bio').val(),
             },
               function(data,myresult){
                 
@@ -30,18 +30,22 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                     for(var i = 0 ; i < 6 ; i++ ){
                         if (data.error[serverData[i]]) {
                             myError += data.error[serverData[i]] +'<br>';
-                            $(myData[i]).addClass('active');
+                            if (serverData[i] == 'Credit Card') {
+                                $("#CreditCard").addClass('active');   
+                            }
+                            else $("#"+serverData[i]).addClass('active');
+                            //console.log($("#"+serverData[i]));
                         }
                     }
                 }
                 
-                $('#response').html($('#response').html() +'<br>'+myError);
+                /*$('#response').html($('#response').html() +'<br>'+myError);
                 var arr = [];
                 $.each(data.error, function(key,value){
                     arr.push(key);
                     console.log( key+' : '+value); 
                 });
-                console.log(arr);
+                console.log(arr);*/
 
             },"json");
             
