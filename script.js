@@ -22,9 +22,8 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                     for(var i = 0 ; i < 6 ; i++ ){
                         if (data.error[serverData[i]]) {
                             myError += data.error[serverData[i]] +'<br>';
-                            $("#"+serverData[i].toLowerCase().replace(' ','_')).addClass('active');
+                            $("#"+serverData[i].replace(' ','_')).addClass('active');
                         }
-                        //console.log(data.error[serverData[i]]);
                     }
                 }
                 
