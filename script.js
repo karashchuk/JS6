@@ -1,4 +1,3 @@
-var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
 
 (function($) {
     $(function() {
@@ -18,14 +17,11 @@ var serverData=['Username','Password','Email','Gender','Credit Card','Bio'];
                 }
                 
                 var myError = '<br>';
-                if (data.error){
-                    for(var i = 0 ; i < 6 ; i++ ){
-                        if (data.error[serverData[i]]) {
-                            myError += data.error[serverData[i]] +'<br>';
-                            $("#"+serverData[i].replace(' ','_')).addClass('active');
-                        }
-                    }
-                }
+
+                $.each(data.error, function(key,value){
+                    myError += key+' : '+value +'<br>';
+                    $("#"+key.replace(' ','_')).addClass('active');
+                });
                 
                 $('#response').html($('#response').html() +'<br>'+myError);
 
